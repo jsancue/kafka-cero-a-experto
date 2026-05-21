@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 @Slf4j
 public class UserKafkaEventConsumer implements Consumer<Message<GenericRecord>> {
 
-    @KafkaListener(topics = "${spring.kafka.topic.user}", groupId = "${spring.kafka.group-id}", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "${app.kafka.topic.user}", groupId = "${app.kafka.group-id}", containerFactory = "kafkaListenerContainerFactory")
     @Override
     public void accept(Message<GenericRecord> genericRecordMessage) {
 

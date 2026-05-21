@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@ConfigurationProperties(prefix = "spring.kafka")
+@ConfigurationProperties(prefix = "app.kafka")
 public class KafkaConsumerConfig {
 
     @Value("${bootstrap_servers}")
