@@ -1,12 +1,12 @@
-package com.jsancue.kafka_cero_a_experto.common.infrastructure;
+package com.jsancue.kafka_cero_a_experto.common.infrastructure.config;
 
-import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.springframework.beans.factory.annotation.Value;
+import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.avro.generic.GenericRecord;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -20,14 +20,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@ConfigurationProperties(prefix = "app.kafka")
 public class KafkaConsumerConfig {
 
-    @Value("${bootstrap_servers}")
+    @Value("${app.kafka.bootstrap-servers}")
     private String BOOTSTRAP_SERVERS_CONFIG;
-    @Value("${group-id}")
+    @Value("${app.kafka.group-id}")
     private String GROUP_ID;
-    @Value("${schema-registry-url}")
+    @Value("${app.kafka.schema-registry-url}")
     private String SCHEMA_REGISTRY_URL_CONFIG;
 
     @Bean
@@ -39,6 +38,7 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
         props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL_CONFIG);
+        props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
         return props;
     }
 

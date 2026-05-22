@@ -1,4 +1,4 @@
-package com.jsancue.kafka_cero_a_experto.common.infrastructure;
+package com.jsancue.kafka_cero_a_experto.common.infrastructure.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
