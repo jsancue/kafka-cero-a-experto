@@ -2,7 +2,7 @@
 
 **Nombre del Proyecto:** kafka-cero-a-experto
 **Versión:** 0.0.1-SNAPSHOT
-**Grupo:** com.davinchicoder
+**Grupo:** com.jsancue
 **Descripción:** Proyecto de Spring Kafka
 **Java Version:** 21
 
